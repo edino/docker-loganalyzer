@@ -17,6 +17,7 @@ docker run -d --restart always -p 80:80/tcp -v /doker/data:/data edino/docker-lo
 
 ## Docker Compose:
 
+```bash
 version: '3.8'
 
 services:
@@ -51,6 +52,7 @@ services:
 
 networks:
   my_network:
+```
 
 
 # Links:
