@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build --squash  --network=host -t loganalyzer .
+docker build --network=host -t edino/docker-loganalyzer:arm64 .
