@@ -1,3 +1,5 @@
+##Start of Dockerfile
+
 FROM arm64v8/php:5.6-apache
 
 LABEL version="1.1" maintainer="eddypqd@gmail.com" description="Docker webapp loganalyzer"
@@ -20,10 +22,19 @@ HEALTHCHECK --interval=4m --timeout=10s --start-period=30s CMD /health_check.sh
 
 ENV TZ=America/Toronto
 ENV HTTP_PORT=80
+ENV syslog=514
 
+# Expose HTTP_PORT
 EXPOSE ${HTTP_PORT}/tcp
 
-VOLUME ["/data"]
+# Expose UDP port 514 for Syslog (UDP)
+EXPOSE ${syslog}/udp
+
+# Define volumes
+VOLUME ["/data", "/var/log/syslog"]
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["start"]
+
+
+##End of Dockerfile
