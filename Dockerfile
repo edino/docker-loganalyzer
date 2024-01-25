@@ -23,9 +23,14 @@ HEALTHCHECK --interval=4m --timeout=10s --start-period=30s CMD /health_check.sh
 ENV TZ=America/Toronto
 ENV HTTP_PORT=80
 
+# Expose HTTP_PORT
 EXPOSE ${HTTP_PORT}/tcp
 
-VOLUME ["/data"]
+# Expose UDP port 514 for Syslog (UDP)
+EXPOSE 514/udp
+
+# Define volumes
+VOLUME ["/data", "/var/log/syslog"]
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["start"]
